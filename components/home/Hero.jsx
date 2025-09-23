@@ -5,41 +5,48 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="bg-neutral-50 dark:bg-neutral-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 items-center gap-10">
-        {/* Left Content */}
-        <div className="space-y-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-neutral-900 dark:text-white leading-tight">
-            Upgrade Your World with{" "}
-            <span className="text-yellow-400">MyTechHub</span>
-          </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-lg">
-            Discover the latest gadgets and electronics — mobiles, monitors,
-            watches, and accessories. Quality products, affordable prices, and
-            fast delivery.
-          </p>
-          <div className="flex space-x-4">
-            <Button
-              size="lg"
-              className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-xl"
-            >
-              Shop Now
-            </Button>
-            <Button size="lg" variant="outline" className="rounded-xl">
-              Explore Products
-            </Button>
+    <section className="bg-teal-50 dark:bg-[#1e2939] min-h-[70vh] py-16">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
+          {/* Right Image - Mobile version image in the top */}
+          <div className="relative w-full h-72 md:h-[420px] order-1 md:order-2">
+            <Image
+              src="https://i.ibb.co.com/dJKVLCWP/banner-Image.jpg"
+              alt="Gadgets"
+              fill
+              className="object-contain drop-shadow-2xl"
+              priority
+            />
           </div>
-        </div>
 
-        {/* Right Image */}
-        <div className="relative w-full h-72 md:h-[420px]">
-          <Image
-            src="/hero-gadgets.png"
-            alt="Gadgets"
-            fill
-            className="object-contain drop-shadow-xl"
-            priority
-          />
+          {/* Left Content */}
+          <div className="space-y-6 text-center md:text-left order-2 md:order-1">
+            <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight text-neutral-900 dark:text-white">
+              Upgrade Your World with{" "}
+              <span className="text-teal-500">MyTechHub</span>
+            </h1>
+            <p className="text-lg text-neutral-700 dark:text-neutral-300 max-w-lg mx-auto md:mx-0">
+              Discover the latest gadgets and electronics — mobiles, monitors,
+              watches, and accessories. Quality products, affordable prices, and
+              fast delivery.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <Button
+                size="lg"
+                className="bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-xl shadow-lg transition-transform hover:scale-105 cursor-pointer"
+              >
+                Shop Now
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-teal-500 text-teal-600 dark:text-teal-400 hover:bg-teal-50 dark:hover:bg-neutral-800 rounded-xl shadow-md transition-transform hover:scale-105 cursor-pointer"
+              >
+                Explore Products
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
