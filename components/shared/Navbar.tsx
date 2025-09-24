@@ -58,7 +58,7 @@ const Navbar = () => {
   });
 
   return (
-    <header className="sticky top-0 z-50 bg-teal-50 dark:bg-[#1e2939] backdrop-blur-md shadow-sm">
+    <header className="sticky top-0 z-50 bg-white dark:bg-[#081224] backdrop-blur-md shadow-sm">
       <nav>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">

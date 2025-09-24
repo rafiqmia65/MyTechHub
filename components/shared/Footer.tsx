@@ -1,15 +1,16 @@
-"use client";
-
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-teal-50 dark:bg-[#1e2939] text-gray-800 dark:text-gray-300 transition-colors duration-300 font-sans">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+    <footer className="bg-white dark:bg-[#020618] text-gray-800 dark:text-gray-300 transition-colors duration-300 font-sans">
+      <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* Logo & About */}
         <div className="space-y-6">
-          <h2 className="text-4xl font-extrabold text-teal-600 dark:text-teal-400 tracking-tight">
-            MyTechHub
+          <h2 className="text-4xl font-extrabold text-teal-500 hover:text-teal-600 tracking-tight">
+            <Link href="/" className="cursor-pointer">
+              MyTechHub
+            </Link>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-sm">
             Your trusted source for the latest tech and gadgets. We offer
@@ -17,10 +18,10 @@ const Footer = () => {
           </p>
           {/* Social Icons */}
           <div className="flex space-x-5 mt-4">
-            <Facebook className="w-6 h-6 text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors cursor-pointer" />
-            <Twitter className="w-6 h-6 text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors cursor-pointer" />
-            <Instagram className="w-6 h-6 text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors cursor-pointer" />
-            <Linkedin className="w-6 h-6 text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors cursor-pointer" />
+            <Facebook className="w-6 h-6 text-teal-400 hover:text-teal-600 transition-colors cursor-pointer" />
+            <Twitter className="w-6 h-6 text-teal-400 hover:text-teal-600 transition-colors cursor-pointer" />
+            <Instagram className="w-6 h-6 text-teal-400 hover:text-teal-600 transition-colors cursor-pointer" />
+            <Linkedin className="w-6 h-6 text-teal-400 hover:text-teal-600 transition-colors cursor-pointer" />
           </div>
         </div>
 
@@ -36,11 +37,11 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-grow p-3 rounded-l-md  dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 placeholder-gray-400 dark:placeholder-gray-500"
+              className="flex-grow p-3 rounded-l-md bg-transparent text-gray-800 dark:text-gray-200 border-2 border-teal-500  focus:outline-none placeholder-gray-400 dark:placeholder-gray-500"
             />
             <button
               type="submit"
-              className="bg-teal-600 text-white font-semibold p-3 rounded-r-md hover:bg-teal-500 dark:hover:bg-teal-400 transition-colors"
+              className="bg-teal-500 text-white font-semibold p-3 rounded-r-md hover:bg-teal-600 transition-colors cursor-pointer"
             >
               Subscribe
             </button>
@@ -49,8 +50,10 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-200 dark:border-gray-700 text-center py-6 text-sm text-gray-500 dark:text-gray-400">
-        &copy; {new Date().getFullYear()} <span className="text-teal-700 font-medium">MyTechHub</span>. All rights reserved.
+      <div className="dark:bg-[#081224] border-t border-gray-200 dark:border-gray-700 text-center py-6 text-sm text-gray-500 dark:text-gray-400">
+        &copy; {new Date().getFullYear()}{" "}
+        <span className="text-teal-400 font-medium">MyTechHub</span>. All rights
+        reserved.
       </div>
     </footer>
   );

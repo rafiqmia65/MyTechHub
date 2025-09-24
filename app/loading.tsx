@@ -5,7 +5,7 @@ export default function Loading() {
   const cards = Array.from({ length: 6 });
 
   return (
-    <div className="p-6 py-12 bg-white dark:bg-[#1e2939] transition-colors duration-300">
+    <div className="p-6 py-12 bg-white dark:bg-[#081224] transition-colors duration-300">
       {/* Heading Skeleton */}
       <div className="mb-6">
         <Skeleton className="h-10 w-48 rounded-lg" />

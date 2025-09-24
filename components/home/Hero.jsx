@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="bg-teal-50 dark:bg-[#1e2939] min-h-[70vh] py-16">
+    <section className="bg-white dark:bg-[#020618] min-h-[70vh] py-16">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
           {/* Right Image - Mobile version image in the top */}
@@ -41,7 +41,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-teal-500 text-teal-600 dark:text-teal-400 hover:bg-teal-50 dark:hover:bg-neutral-800 rounded-xl shadow-md transition-transform hover:scale-105 cursor-pointer"
+                className="border-teal-500 text-teal-600 dark:text-teal-400 hover:bg-teal-50 dark:hover:bg-gray-900 rounded-xl shadow-md transition-transform hover:scale-105 cursor-pointer"
               >
                 Explore Products
               </Button>
