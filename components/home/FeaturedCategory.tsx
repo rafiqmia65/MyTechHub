@@ -14,6 +14,7 @@ import {
   Radio,
   LucideIcon,
 } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 interface Category {
   name: string;
@@ -43,26 +44,33 @@ const FeaturedCategory: FC = () => {
   return (
     <section className="py-12 bg-gray-50 dark:bg-[#081224] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-teal-500">
+        {/* Header */}
+        <h2 className="text-4xl font-bold text-teal-500 mb-4">
           Featured Category
         </h2>
-        <p className="text-gray-500 dark:text-gray-400 mb-12">
-          Get Your Desired Product from Featured Category!
+        <p className="text-gray-500 dark:text-gray-400 mb-14 text-lg">
+          Get Your Desired Product from Our Top Categories
         </p>
 
+        {/* Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {categories.map(({ name, icon: Icon }, idx) => (
-            <div
+            <Card
               key={idx}
-              className="group flex flex-col items-center justify-center p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-lg border border-gray-200 dark:border-slate-700 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+              className="group bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
             >
-              <div className="w-14 h-14 flex items-center justify-center rounded-full bg-teal-100 dark:bg-teal-500/20 text-teal-600 mb-3 group-hover:scale-110 transition-transform duration-300">
-                <Icon size={28} />
-              </div>
-              <h3 className="text-base font-medium text-slate-700 dark:text-gray-200 group-hover:text-teal-600 transition-colors">
-                {name}
-              </h3>
-            </div>
+              <CardHeader className="flex flex-col items-center justify-center pt-8">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-teal-100 dark:bg-teal-500/20 text-teal-600 group-hover:scale-110 transition-transform duration-300">
+                  <Icon size={32} />
+                </div>
+              </CardHeader>
+
+              <CardContent className="text-center pb-8">
+                <CardTitle className="text-base font-medium text-slate-700 dark:text-gray-200 group-hover:text-teal-600 transition-colors">
+                  {name}
+                </CardTitle>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

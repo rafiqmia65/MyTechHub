@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Globe2, Truck, ShieldCheck, Headphones, Zap } from "lucide-react";
+import { Card } from "../ui/card";
 
 interface Feature {
   icon: React.ElementType;
@@ -55,7 +56,7 @@ const WhyWeAreFavorite: FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map(({ icon: Icon, title, description }, idx) => (
-            <div
+            <Card
               key={idx}
               className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-lg border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:-translate-y-1"
             >
@@ -68,7 +69,7 @@ const WhyWeAreFavorite: FC = () => {
               <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
                 {description}
               </p>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

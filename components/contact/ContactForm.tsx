@@ -1,6 +1,7 @@
 "use client";
 
 import { FC, useState, ChangeEvent, FormEvent } from "react";
+import { Card } from "../ui/card";
 
 interface FormState {
   name: string;
@@ -29,7 +30,7 @@ const ContactForm: FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-3xl shadow-xl">
+    <Card className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-3xl shadow-xl">
       <h3 className="text-3xl font-semibold mb-6 text-teal-600 dark:text-teal-400 text-center">
         Send a Message
       </h3>
@@ -97,7 +98,7 @@ const ContactForm: FC = () => {
           Send Message
         </button>
       </form>
-    </div>
+    </Card>
   );
 };
 
