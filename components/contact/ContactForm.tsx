@@ -1,32 +1,14 @@
 "use client";
 
-import { FC, useState, ChangeEvent, FormEvent } from "react";
+import { FC } from "react";
 import { Card } from "../ui/card";
-
-interface FormState {
-  name: string;
-  email: string;
-  message: string;
-}
+import { toast } from "sonner";
 
 const ContactForm: FC = () => {
-  const [formState, setFormState] = useState<FormState>({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormState({ ...formState, [name]: value });
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Thank you for your message! We will get back to you soon.");
-    setFormState({ name: "", email: "", message: "" });
+    toast.success("Thank you for your message! We will get back to you soon.");
+    e.currentTarget.reset();
   };
 
   return (
@@ -47,8 +29,6 @@ const ContactForm: FC = () => {
               id="name"
               type="text"
               name="name"
-              value={formState.name}
-              onChange={handleInputChange}
               placeholder="John Doe"
               required
               className="w-full p-4 rounded-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-300"
@@ -65,8 +45,6 @@ const ContactForm: FC = () => {
               id="email"
               type="email"
               name="email"
-              value={formState.email}
-              onChange={handleInputChange}
               placeholder="you@example.com"
               required
               className="w-full p-4 rounded-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-300"
@@ -83,8 +61,6 @@ const ContactForm: FC = () => {
           <textarea
             id="message"
             name="message"
-            value={formState.message}
-            onChange={handleInputChange}
             rows={6}
             placeholder="Hi MytechHub team, I have a question about..."
             required
