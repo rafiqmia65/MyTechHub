@@ -1,6 +1,5 @@
 "use client";
 
-import { FC } from "react";
 import {
   Laptop,
   Smartphone,
@@ -40,9 +39,9 @@ const categories: Category[] = [
   { name: "Gaming Console", icon: Gamepad2 },
 ];
 
-const FeaturedCategory: FC = () => {
+const FeaturedCategory = () => {
   return (
-    <section className="py-12 bg-gray-50 dark:bg-[#081224] transition-colors duration-300">
+    <section className="py-12 bg-white dark:bg-slate-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 text-center">
         {/* Header */}
         <h2 className="text-4xl font-bold text-teal-500 mb-4">
@@ -57,7 +56,7 @@ const FeaturedCategory: FC = () => {
           {categories.map(({ name, icon: Icon }, idx) => (
             <Card
               key={idx}
-              className="group bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+              className="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"
             >
               <CardHeader className="flex flex-col items-center justify-center pt-8">
                 <div className="w-16 h-16 flex items-center justify-center rounded-full bg-teal-100 dark:bg-teal-500/20 text-teal-600 group-hover:scale-110 transition-transform duration-300">

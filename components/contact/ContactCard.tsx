@@ -25,7 +25,7 @@ const ContactCard: FC<ContactCardProps> = ({
   linkText,
 }) => {
   return (
-    <Card className="bg-gray-100 dark:bg-slate-900 rounded-2xl text-center shadow-lg transform hover:scale-[1.02] transition-transform duration-300">
+    <Card className="bg-white dark:bg-slate-800 rounded-2xl text-center shadow-lg transform hover:scale-[1.02] transition-transform duration-300 border-slate-200 border dark:border-slate-700">
       {/* Header */}
       <CardHeader className="flex flex-col items-center">
         <div className="w-16 h-16 flex items-center justify-center bg-teal-100 dark:bg-teal-900/40 rounded-full mb-4">

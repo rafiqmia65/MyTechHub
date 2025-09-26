@@ -1,9 +1,11 @@
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-[#020618] text-gray-800 dark:text-gray-300 transition-colors duration-300 font-sans">
+    <footer className="bg-white dark:bg-slate-900 text-gray-800 dark:text-gray-300 transition-colors duration-300 font-sans">
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* Logo & About */}
         <div className="space-y-6">
@@ -33,18 +35,19 @@ const Footer = () => {
           <p className="text-gray-600 dark:text-gray-400 mb-4">
             Get exclusive deals and product updates right to your inbox.
           </p>
-          <form className="flex w-full max-w-md">
-            <input
+          <form className="flex flex-col gap-2 w-full max-w-md">
+            <Input
               type="email"
               placeholder="Your email address"
-              className="flex-grow p-3 rounded-l-md bg-transparent text-gray-800 dark:text-gray-200 border-2 border-teal-500  focus:outline-none placeholder-gray-400 dark:placeholder-gray-500"
+              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
             />
-            <button
+            <Button
               type="submit"
-              className="bg-teal-500 text-white font-semibold p-3 rounded-r-md hover:bg-teal-600 transition-colors cursor-pointer"
+              className="bg-teal-500 max-w-[100px] text-white font-semibold p-3 rounded-r-md hover:bg-teal-600 transition-colors cursor-pointer"
             >
               Subscribe
-            </button>
+            </Button>
           </form>
         </div>
       </div>

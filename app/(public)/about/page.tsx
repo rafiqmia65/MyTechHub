@@ -3,7 +3,7 @@ import { Globe2, Truck, Headphones, ShieldCheck } from "lucide-react";
 
 const AboutUs: FC = () => {
   return (
-    <section className="bg-gray-50 py-16 dark:bg-[#020618] transition-colors duration-300 min-h-screen">
+    <section className="bg-white py-16 dark:bg-slate-900 transition-colors duration-300 min-h-screen">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-teal-700 dark:text-white mb-6">
@@ -21,7 +21,7 @@ const AboutUs: FC = () => {
 
       {/* Our Mission & Vision Cards */}
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 mb-16">
-        <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-slate-700">
+        <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-slate-200 dark:border-slate-700">
           <h2 className="text-3xl font-bold text-teal-500 dark:text-white mb-4">
             Our Mission
           </h2>
@@ -33,7 +33,7 @@ const AboutUs: FC = () => {
             and efficiency in everyday life.
           </p>
         </div>
-        <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-slate-700">
+        <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-slate-200 dark:border-slate-700">
           <h2 className="text-3xl font-bold text-teal-500 dark:text-white mb-4">
             Our Vision
           </h2>
@@ -53,7 +53,8 @@ const AboutUs: FC = () => {
           Why Choose Us
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
-          <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-center">
+          {/* Card 1 */}
+          <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-center border border-slate-200 dark:border-slate-700">
             <div className="mx-auto w-16 h-16 flex items-center justify-center bg-teal-100 dark:bg-teal-500/20 rounded-full mb-5">
               <Globe2 size={28} className="text-teal-600" />
             </div>
@@ -66,7 +67,8 @@ const AboutUs: FC = () => {
             </p>
           </div>
 
-          <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-center">
+          {/* Card 2 */}
+          <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-center border border-slate-200 dark:border-slate-700">
             <div className="mx-auto w-16 h-16 flex items-center justify-center bg-teal-100 dark:bg-teal-500/20 rounded-full mb-5">
               <Truck size={28} className="text-teal-600" />
             </div>
@@ -79,7 +81,8 @@ const AboutUs: FC = () => {
             </p>
           </div>
 
-          <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-center">
+          {/* Card 3 */}
+          <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-center border border-slate-200 dark:border-slate-700">
             <div className="mx-auto w-16 h-16 flex items-center justify-center bg-teal-100 dark:bg-teal-500/20 rounded-full mb-5">
               <ShieldCheck size={28} className="text-teal-600" />
             </div>
@@ -92,7 +95,8 @@ const AboutUs: FC = () => {
             </p>
           </div>
 
-          <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-center">
+          {/* Card 4 */}
+          <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-center border border-slate-200 dark:border-slate-700">
             <div className="mx-auto w-16 h-16 flex items-center justify-center bg-teal-100 dark:bg-teal-500/20 rounded-full mb-5">
               <Headphones size={28} className="text-teal-600" />
             </div>

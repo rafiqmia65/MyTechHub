@@ -1,12 +1,11 @@
-import { FC } from "react";
 import { Twitter, Linkedin, Instagram } from "lucide-react";
 import ContactInfoGrid from "@/components/contact/ContactInfoGrid";
 import ContactForm from "@/components/contact/ContactForm";
 import ContactMap from "@/components/contact/ContactMap";
 
-const ContactSection: FC = () => {
+const ContactSection = () => {
   return (
-    <section className="bg-gray-50 dark:bg-slate-950 text-gray-900 dark:text-gray-100 py-12 transition-colors duration-500">
+    <section className="bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 py-12 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">

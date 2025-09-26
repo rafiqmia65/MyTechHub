@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Globe2, Truck, ShieldCheck, Headphones, Zap } from "lucide-react";
 import { Card } from "../ui/card";
 
@@ -41,9 +40,9 @@ const features: Feature[] = [
   },
 ];
 
-const WhyWeAreFavorite: FC = () => {
+const WhyWeAreFavorite = () => {
   return (
-    <section className="py-12 bg-gray-50 dark:bg-[#081224] transition-colors duration-300">
+    <section className="py-12 bg-white dark:bg-slate-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-teal-500 mb-3">
           Why We’re the Favorite Choice Worldwide 🌍
@@ -58,7 +57,7 @@ const WhyWeAreFavorite: FC = () => {
           {features.map(({ icon: Icon, title, description }, idx) => (
             <Card
               key={idx}
-              className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-lg border border-gray-200 dark:border-slate-700 transition-all duration-300 hover:-translate-y-1"
+              className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-lg border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:-translate-y-1"
             >
               <div className="w-16 h-16 flex items-center justify-center bg-teal-100 dark:bg-teal-500/20 text-teal-600 rounded-full mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Icon size={32} />

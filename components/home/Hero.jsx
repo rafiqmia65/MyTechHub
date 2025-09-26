@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="bg-white dark:bg-[#020618] min-h-[70vh] py-16">
+    <section className="bg-white dark:bg-slate-900 min-h-[60vh] py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
           {/* Right Image - Mobile version image in the top */}

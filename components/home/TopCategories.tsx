@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
@@ -35,9 +34,9 @@ const topCategories: TopCategory[] = [
   },
 ];
 
-const TopCategories: FC = () => {
+const TopCategories = () => {
   return (
-    <section className="py-20 bg-white dark:bg-[#020618] transition-colors duration-300">
+    <section className="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 text-center">
         {/* Header */}
         <h2 className="text-4xl font-bold text-teal-500 mb-3">
@@ -52,7 +51,7 @@ const TopCategories: FC = () => {
           {topCategories.map((category, idx) => (
             <Card
               key={idx}
-              className="relative group overflow-hidden rounded-2xl shadow-md hover:shadow-2xl bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 transition-all duration-500 transform hover:-translate-y-2 h-64 sm:h-72 lg:h-80"
+              className="relative group overflow-hidden rounded-2xl shadow-md hover:shadow-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 transition-all duration-500 transform hover:-translate-y-2 h-64 sm:h-72 lg:h-80"
             >
               <Image
                 src={category.image}
