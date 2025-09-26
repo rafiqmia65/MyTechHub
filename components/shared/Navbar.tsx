@@ -58,7 +58,7 @@ const Navbar = () => {
   });
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-[#081224] backdrop-blur-md shadow-sm">
+    <header className="sticky top-0 z-50 bg-white dark:bg-slate-800 border-b-2 border-teal-900  backdrop-blur-md shadow-sm">
       <nav>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
@@ -93,7 +93,7 @@ const Navbar = () => {
                 </SheetTrigger>
                 <SheetContent
                   side="left"
-                  className="bg-white dark:bg-neutral-900 text-black dark:text-white"
+                  className="bg-white dark:bg-slate-900 text-black dark:text-white"
                 >
                   {/* Header with Logo + Close */}
                   <div className="flex justify-between items-center mb-6 ml-4">
