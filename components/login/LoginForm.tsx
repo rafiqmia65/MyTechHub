@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import GoogleSignUpButton from "../shared/GoogleSignUpButton";
 
-const SignUpForm = () => {
+const LoginForm = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -21,18 +21,18 @@ const SignUpForm = () => {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const res = await fetch("/api/auth/register", {
+      const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
       if (res.ok) {
-        alert("🎉 Account created successfully!");
-        router.push("/login");
+        alert("✅ Login successful!");
+        router.push("/");
       } else {
         const error = await res.json();
-        alert(error.message || "Registration failed");
+        alert(error.message || "Login failed");
       }
     } catch {
       alert("Something went wrong!");
@@ -45,28 +45,13 @@ const SignUpForm = () => {
     <section className="flex items-center justify-center">
       <div className="w-full max-w-lg bg-white dark:bg-slate-800 shadow-2xl rounded-2xl p-10 border border-slate-200 dark:border-slate-700">
         <h1 className="text-4xl font-extrabold text-center mb-2 bg-gradient-to-r from-teal-500 to-teal-700 bg-clip-text text-transparent">
-          Sign Up
+          Log In
         </h1>
         <p className="text-center text-slate-500 dark:text-slate-400 mb-8">
-          Create your MyTechHub account in seconds
+          Welcome back! Sign in to continue exploring tech.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Full Name */}
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-              Full Name
-            </label>
-            <Input
-              type="text"
-              name="name"
-              placeholder="John Doe"
-              required
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
-            />
-          </div>
-
+        <form onSubmit={handleLogin} className="space-y-5">
           {/* Email */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
@@ -77,48 +62,6 @@ const SignUpForm = () => {
               name="email"
               placeholder="you@example.com"
               required
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
-            />
-          </div>
-
-          {/* Phone */}
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-              Phone Number
-            </label>
-            <Input
-              type="text"
-              name="phone"
-              placeholder="+8801XXXXXXXXX"
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
-            />
-          </div>
-
-          {/* Photo URL */}
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-              Photo URL
-            </label>
-            <Input
-              type="text"
-              name="photoUrl"
-              placeholder="https://your-photo-link.com"
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
-            />
-          </div>
-
-          {/* Address */}
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-              Address
-            </label>
-            <Input
-              type="text"
-              name="address"
-              placeholder="123 Street, City, Country"
               className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
             />
@@ -152,7 +95,7 @@ const SignUpForm = () => {
             disabled={loading}
             className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-semibold py-3 rounded-xl shadow-md transition disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
           >
-            {loading ? "Creating your account..." : "Create Account"}
+            {loading ? "Signing you in..." : "Log In"}
           </Button>
         </form>
 
@@ -161,12 +104,12 @@ const SignUpForm = () => {
         </div>
 
         <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-8">
-          Already have an account?{" "}
+          Don’t have an account?{" "}
           <Link
-            href="/login"
+            href="/signup"
             className="text-teal-600 hover:underline font-semibold"
           >
-            Log In
+            Sign Up
           </Link>
         </p>
       </div>
@@ -174,4 +117,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

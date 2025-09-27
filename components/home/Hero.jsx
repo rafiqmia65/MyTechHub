@@ -5,11 +5,11 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="bg-white dark:bg-slate-900 min-h-[60vh] py-12">
+    <section className="bg-white dark:bg-slate-900 min-h-[60vh] pt-18 pb-10">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
           {/* Right Image - Mobile version image in the top */}
-          <div className="relative w-full h-72 md:h-[420px] order-1 md:order-2">
+          <div className="relative w-full min-h-72 md:h-[300px] order-1 md:order-2">
             <Image
               src="https://i.ibb.co.com/dJKVLCWP/banner-Image.jpg"
               alt="Gadgets"

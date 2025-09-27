@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Home, ShoppingBag, Layers, Info, Phone } from "lucide-react";
+import { Menu, Home, ShoppingBag, Layers, Info, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,6 +12,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { ModeToggle } from "./ModeToggle";
+import LogOutButton from "./LogOutButton";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -58,7 +59,7 @@ const Navbar = () => {
   });
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-slate-800 border-b-2 border-teal-900  backdrop-blur-md shadow-sm">
+    <header className="sticky top-0 z-50 bg-white dark:bg-slate-800 border-b-2 border-teal-500 dark:border-teal-700 backdrop-blur-md shadow-sm">
       <nav>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
@@ -74,6 +75,24 @@ const Navbar = () => {
             <div className="hidden md:flex items-center space-x-6 font-medium text-neutral-700 dark:text-neutral-200">
               {desktopLinks}
               <ModeToggle />
+
+              {/* Login & Sign Up Buttons */}
+              <div className="flex items-center gap-3 ml-4">
+                <Link href="/login">
+                  <Button
+                    variant="outline"
+                    className="border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors dark:bg-slate-800 cursor-pointer"
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/signUp">
+                  <Button className="bg-teal-600 text-white hover:bg-teal-800 transition-colors cursor-pointer">
+                    Sign Up
+                  </Button>
+                </Link>
+                <LogOutButton></LogOutButton>
+              </div>
             </div>
 
             {/* Mobile Menu */}
@@ -91,11 +110,12 @@ const Navbar = () => {
                     </Button>
                   </div>
                 </SheetTrigger>
+
                 <SheetContent
                   side="left"
                   className="bg-white dark:bg-slate-900 text-black dark:text-white"
                 >
-                  {/* Header with Logo + Close */}
+                  {/* Header with Logo */}
                   <div className="flex justify-between items-center mb-6 ml-4">
                     <Link
                       href="/"
@@ -109,6 +129,24 @@ const Navbar = () => {
                   {/* Mobile Nav Links */}
                   <div className="flex flex-col space-y-4 ml-4 font-medium">
                     {mobileLinks}
+                  </div>
+
+                  {/* Login & Sign Up Buttons (Mobile) */}
+                  <div className="flex flex-col gap-3 mt-8 ml-4">
+                    <Link href="/login">
+                      <Button
+                        variant="outline"
+                        className="w-full border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors"
+                      >
+                        Login
+                      </Button>
+                    </Link>
+                    <Link href="/signup">
+                      <Button className="w-full bg-teal-600 text-white hover:bg-teal-700 transition-colors">
+                        Sign Up
+                      </Button>
+                    </Link>
+                    <LogOutButton></LogOutButton>
                   </div>
                 </SheetContent>
               </Sheet>
