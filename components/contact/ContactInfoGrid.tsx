@@ -1,8 +1,7 @@
-import { FC } from "react";
 import { MapPin, Mail, Phone } from "lucide-react";
 import ContactCard from "./ContactCard";
 
-const ContactInfoGrid: FC = () => {
+const ContactInfoGrid = () => {
   return (
     <div className="grid md:grid-cols-3 gap-8 mb-20">
       <ContactCard

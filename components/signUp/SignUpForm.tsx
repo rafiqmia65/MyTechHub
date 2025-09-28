@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import GoogleSignUpButton from "../shared/GoogleSignUpButton";
+import { toast } from "sonner";
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -26,7 +27,7 @@ const SignUpForm = () => {
     const photoFile = formData.get("photo") as File;
 
     try {
-      // Upload photo to Cloudinary
+      // 1 Upload photo to Cloudinary
       let photoUrl = "";
       if (photoFile) {
         const cloudForm = new FormData();
@@ -55,7 +56,7 @@ const SignUpForm = () => {
 
       console.log();
 
-      // 2️⃣ Register user with uploaded photo URL
+      // 2 Register user with uploaded photo URL
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -66,18 +67,19 @@ const SignUpForm = () => {
           address,
           password,
           photoUrl,
+          role: "customer",
         }),
       });
 
       if (res.ok) {
-        alert("🎉 Account created successfully!");
+        toast.success("Your Account created successfully!");
         router.push("/login");
       } else {
         const error = await res.json();
-        alert(error.message || "Registration failed");
+        toast.error(error.message || "Registration failed");
       }
     } catch (err) {
-      alert("Something went wrong!");
+      toast.error("Something went wrong!");
       console.error(err);
     } finally {
       setLoading(false);

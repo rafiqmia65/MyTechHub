@@ -1,12 +1,11 @@
 "use client";
 
-import { FC } from "react";
 import { Card } from "../ui/card";
 import { toast } from "sonner";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
-const ContactForm: FC = () => {
+const ContactForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     toast.success("Thank you for your message! We will get back to you soon.");

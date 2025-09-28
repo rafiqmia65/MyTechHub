@@ -1,8 +1,6 @@
 "use client";
 
-import { FC } from "react";
-
-const ContactMap: FC = () => {
+const ContactMap = () => {
   return (
     <div className="relative w-full h-[450px] rounded-3xl overflow-hidden shadow-2xl group mt-20">
       <iframe

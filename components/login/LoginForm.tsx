@@ -28,7 +28,7 @@ const LoginForm = () => {
       });
 
       if (res.ok) {
-        alert("✅ Login successful!");
+        alert("Login successful!");
         router.push("/");
       } else {
         const error = await res.json();

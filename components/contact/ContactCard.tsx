@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import { ArrowUpRight } from "lucide-react";
 import {
   Card,
@@ -17,13 +17,13 @@ interface ContactCardProps {
   linkText: string;
 }
 
-const ContactCard: FC<ContactCardProps> = ({
+const ContactCard = ({
   icon,
   title,
   description,
   link,
   linkText,
-}) => {
+}: ContactCardProps) => {
   return (
     <Card className="bg-white dark:bg-slate-800 rounded-2xl text-center shadow-lg transform hover:scale-[1.02] transition-transform duration-300 border-slate-200 border dark:border-slate-700">
       {/* Header */}

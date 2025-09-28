@@ -1,4 +1,4 @@
-import { dbConnect } from "@/service/Mongodb";
+import { dbConnect } from "@/service/mongo";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {

@@ -1,7 +1,6 @@
-import { FC } from "react";
 import { Globe2, Truck, Headphones, ShieldCheck } from "lucide-react";
 
-const AboutUs: FC = () => {
+const AboutUs = () => {
   return (
     <section className="bg-white py-16 dark:bg-slate-900 transition-colors duration-300 min-h-screen">
       {/* Header */}
