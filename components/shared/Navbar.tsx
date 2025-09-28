@@ -13,9 +13,11 @@ import {
 } from "@/components/ui/sheet";
 import { ModeToggle } from "./ModeToggle";
 import LogOutButton from "./LogOutButton";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { data: session } = useSession(); // NextAuth session
 
   const navItems = [
     { href: "/", label: "Home", icon: Home },
@@ -25,7 +27,6 @@ const Navbar = () => {
     { href: "/contact", label: "Contact", icon: Phone },
   ];
 
-  // Desktop links (no icons)
   const desktopLinks = navItems.map((item) => (
     <Link
       key={item.href}
@@ -40,7 +41,6 @@ const Navbar = () => {
     </Link>
   ));
 
-  // Mobile links (with icons)
   const mobileLinks = navItems.map((item) => {
     const Icon = item.icon;
     return (
@@ -76,22 +76,27 @@ const Navbar = () => {
               {desktopLinks}
               <ModeToggle />
 
-              {/* Login & Sign Up Buttons */}
+              {/* Auth Buttons */}
               <div className="flex items-center gap-3 ml-4">
-                <Link href="/login">
-                  <Button
-                    variant="outline"
-                    className="border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors dark:bg-slate-800 cursor-pointer"
-                  >
-                    Login
-                  </Button>
-                </Link>
-                <Link href="/signUp">
-                  <Button className="bg-teal-600 text-white hover:bg-teal-800 transition-colors cursor-pointer">
-                    Sign Up
-                  </Button>
-                </Link>
-                <LogOutButton></LogOutButton>
+                {session?.user ? (
+                  <LogOutButton />
+                ) : (
+                  <>
+                    <Link href="/login">
+                      <Button
+                        variant="outline"
+                        className="border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors dark:bg-slate-800 cursor-pointer"
+                      >
+                        Login
+                      </Button>
+                    </Link>
+                    <Link href="/signUp">
+                      <Button className="bg-teal-600 text-white hover:bg-teal-800 transition-colors cursor-pointer">
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
 
@@ -115,7 +120,6 @@ const Navbar = () => {
                   side="left"
                   className="bg-white dark:bg-slate-900 text-black dark:text-white"
                 >
-                  {/* Header with Logo */}
                   <div className="flex justify-between items-center mb-6 ml-4">
                     <Link
                       href="/"
@@ -123,30 +127,33 @@ const Navbar = () => {
                     >
                       MyTechHub
                     </Link>
-                    <SheetClose asChild></SheetClose>
+                    <SheetClose asChild />
                   </div>
 
-                  {/* Mobile Nav Links */}
                   <div className="flex flex-col space-y-4 ml-4 font-medium">
                     {mobileLinks}
                   </div>
 
-                  {/* Login & Sign Up Buttons (Mobile) */}
                   <div className="flex flex-col gap-3 mt-8 ml-4">
-                    <Link href="/login">
-                      <Button
-                        variant="outline"
-                        className="w-full border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors"
-                      >
-                        Login
-                      </Button>
-                    </Link>
-                    <Link href="/signup">
-                      <Button className="w-full bg-teal-600 text-white hover:bg-teal-700 transition-colors">
-                        Sign Up
-                      </Button>
-                    </Link>
-                    <LogOutButton></LogOutButton>
+                    {session?.user ? (
+                      <LogOutButton />
+                    ) : (
+                      <>
+                        <Link href="/login">
+                          <Button
+                            variant="outline"
+                            className="w-full border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors"
+                          >
+                            Login
+                          </Button>
+                        </Link>
+                        <Link href="/signup">
+                          <Button className="w-full bg-teal-600 text-white hover:bg-teal-700 transition-colors">
+                            Sign Up
+                          </Button>
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </SheetContent>
               </Sheet>
