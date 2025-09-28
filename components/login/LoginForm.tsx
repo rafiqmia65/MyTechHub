@@ -7,35 +7,40 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import GoogleSignUpButton from "../shared/GoogleSignUpButton";
+import { toast } from "sonner";
+import { signIn } from "next-auth/react";
 
 const LoginForm = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // Login handler
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
 
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
       });
 
-      if (res.ok) {
-        alert("Login successful!");
-        router.push("/");
+      if (result?.error) {
+        toast.error("Something went wrong during login.");
       } else {
-        const error = await res.json();
-        alert(error.message || "Login failed");
+        toast.success("Login successful!");
+        router.refresh(); // refresh server components
+        router.push("/"); // navigate to home or dashboard
       }
-    } catch {
-      alert("Something went wrong!");
+    } catch (err) {
+      console.error("Login error:", err);
+      toast.error("Something went wrong during login.");
     } finally {
       setLoading(false);
     }
@@ -100,7 +105,7 @@ const LoginForm = () => {
         </form>
 
         <div className="mt-6">
-          <GoogleSignUpButton></GoogleSignUpButton>
+          <GoogleSignUpButton />
         </div>
 
         <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-8">
