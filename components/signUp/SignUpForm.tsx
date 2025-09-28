@@ -18,13 +18,55 @@ const SignUpForm = () => {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const address = formData.get("address");
+    const password = formData.get("password");
+    const photoFile = formData.get("photo") as File;
 
     try {
+      // Upload photo to Cloudinary
+      let photoUrl = "";
+      if (photoFile) {
+        const cloudForm = new FormData();
+        cloudForm.append("file", photoFile);
+        cloudForm.append(
+          "upload_preset",
+          process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string
+        );
+
+        const uploadRes = await fetch(
+          `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+          {
+            method: "POST",
+            body: cloudForm,
+          }
+        );
+
+        const uploadData = await uploadRes.json();
+        if (uploadData.secure_url) {
+          photoUrl = uploadData.secure_url;
+          console.log(photoUrl);
+        } else {
+          throw new Error("Image upload failed!");
+        }
+      }
+
+      console.log();
+
+      // 2️⃣ Register user with uploaded photo URL
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          address,
+          password,
+          photoUrl,
+        }),
       });
 
       if (res.ok) {
@@ -34,8 +76,9 @@ const SignUpForm = () => {
         const error = await res.json();
         alert(error.message || "Registration failed");
       }
-    } catch {
+    } catch (err) {
       alert("Something went wrong!");
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -96,20 +139,6 @@ const SignUpForm = () => {
             />
           </div>
 
-          {/* Photo URL */}
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
-              Photo URL
-            </label>
-            <Input
-              type="text"
-              name="photoUrl"
-              placeholder="https://your-photo-link.com"
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
-            />
-          </div>
-
           {/* Address */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
@@ -121,6 +150,21 @@ const SignUpForm = () => {
               placeholder="123 Street, City, Country"
               className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
+            />
+          </div>
+
+          {/* Photo Upload */}
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+              Upload Profile Photo
+            </label>
+            <Input
+              type="file"
+              name="photo"
+              accept="image/*"
+              required
+              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500 cursor-pointer"
             />
           </div>
 
