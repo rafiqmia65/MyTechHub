@@ -14,10 +14,11 @@ import {
 import { ModeToggle } from "./ModeToggle";
 import LogOutButton from "./LogOutButton";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const { data: session } = useSession(); // NextAuth session
+  const { data: session } = useSession();
 
   const navItems = [
     { href: "/", label: "Home", icon: Home },
@@ -79,7 +80,19 @@ const Navbar = () => {
               {/* Auth Buttons */}
               <div className="flex items-center gap-3 ml-4">
                 {session?.user ? (
-                  <LogOutButton />
+                  <div className="flex gap-2 items-center">
+                    <Image
+                      src={
+                        session?.user?.photoUrl ||
+                        "https://i.ibb.co.com/bjKVM3RJ/avatar.jpg"
+                      }
+                      alt="User Photo"
+                      width={40}
+                      height={40}
+                      className="rounded-full object-cover"
+                    />
+                    <LogOutButton />
+                  </div>
                 ) : (
                   <>
                     <Link href="/login">
@@ -120,6 +133,7 @@ const Navbar = () => {
                   side="left"
                   className="bg-white dark:bg-slate-900 text-black dark:text-white"
                 >
+                  {/* Mobile Header */}
                   <div className="flex justify-between items-center mb-6 ml-4">
                     <Link
                       href="/"
@@ -130,10 +144,12 @@ const Navbar = () => {
                     <SheetClose asChild />
                   </div>
 
+                  {/* Mobile Nav Links */}
                   <div className="flex flex-col space-y-4 ml-4 font-medium">
                     {mobileLinks}
                   </div>
 
+                  {/* Mobile Auth Buttons */}
                   <div className="flex flex-col gap-3 mt-8 ml-4">
                     {session?.user ? (
                       <LogOutButton />

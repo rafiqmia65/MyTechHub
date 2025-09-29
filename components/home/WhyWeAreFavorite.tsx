@@ -45,7 +45,7 @@ const WhyWeAreFavorite = () => {
     <section className="py-12 bg-white dark:bg-slate-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-teal-500 mb-3">
-          Why We’re the Favorite Choice Worldwide 🌍
+          Why We’re the Favorite Choice Worldwide
         </h2>
         <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-16">
           At MytechHub, we’re more than just a tech store — we’re a global
