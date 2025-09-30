@@ -1,5 +1,5 @@
+import { Card } from "@/components/ui/card";
 import { Globe2, Truck, ShieldCheck, Headphones, Zap } from "lucide-react";
-import { Card } from "../ui/card";
 
 interface Feature {
   icon: React.ElementType;

@@ -1,7 +1,7 @@
 import { Twitter, Linkedin, Instagram } from "lucide-react";
-import ContactInfoGrid from "@/components/contact/ContactInfoGrid";
-import ContactForm from "@/components/contact/ContactForm";
-import ContactMap from "@/components/contact/ContactMap";
+import ContactInfoGrid from "@/components/public/contact/ContactInfoGrid";
+import ContactForm from "@/components/public/contact/ContactForm";
+import ContactMap from "@/components/public/contact/ContactMap";
 
 const ContactSection = () => {
   return (

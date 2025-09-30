@@ -15,7 +15,7 @@ export const dbConnect = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string, {
+    await mongoose.connect(process.env.MONGODB_URI as string, {
       bufferCommands: false,
     });
     isConnected = true;

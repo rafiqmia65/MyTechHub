@@ -12,7 +12,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { ModeToggle } from "./ModeToggle";
-import LogOutButton from "./LogOutButton";
+import LogOutButton from "../auth/LogOutButton";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 
@@ -87,8 +87,8 @@ const Navbar = () => {
                         "https://i.ibb.co.com/bjKVM3RJ/avatar.jpg"
                       }
                       alt="User Photo"
-                      width={40}
-                      height={40}
+                      width={32}
+                      height={32}
                       className="rounded-full object-cover"
                     />
                     <LogOutButton />

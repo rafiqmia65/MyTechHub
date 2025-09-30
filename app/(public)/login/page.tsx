@@ -1,4 +1,4 @@
-import LoginForm from "@/components/login/LoginForm";
+import LoginForm from "@/components/auth/login/LoginForm";
 import { ShieldCheck, Zap, Settings, Star } from "lucide-react";
 import React from "react";
 

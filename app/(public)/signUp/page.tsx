@@ -1,4 +1,4 @@
-import SignUpForm from "@/components/signUp/SignUpForm";
+import SignUpForm from "@/components/auth/signUp/SignUpForm";
 import { ShoppingCart, Tag, Package, Heart } from "lucide-react";
 import React from "react";
 

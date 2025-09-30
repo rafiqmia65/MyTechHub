@@ -1,9 +1,9 @@
 "use client";
 
-import { Card } from "../ui/card";
+import { Card } from "../../ui/card";
 import { toast } from "sonner";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
 
 const ContactForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

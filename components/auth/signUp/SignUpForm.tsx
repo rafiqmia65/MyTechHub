@@ -6,8 +6,8 @@ import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import GoogleSignUpButton from "../shared/GoogleSignUpButton";
 import { toast } from "sonner";
+import GoogleSignUpButton from "../GoogleSignUpButton";
 
 const SignUpForm = () => {
   const router = useRouter();

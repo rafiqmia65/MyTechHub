@@ -1,43 +1,39 @@
-import { MongoClient, Db } from "mongodb";
+// This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
+import { MongoClient, ServerApiVersion } from "mongodb";
 
-declare global {
-  // Keep a global reference to the client in development to support HMR
-  // eslint-disable-next-line no-var
-  var _mongoClientPromise: Promise<MongoClient> | undefined;
+if (!process.env.MONGODB_URI) {
+  throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
 }
 
-if (!process.env.MONGODB_CONNECTION_STRING) {
-  throw new Error(
-    'Invalid or missing environment variable: "MONGODB_CONNECTION_STRING"'
-  );
-}
-
-const uri: string = process.env.MONGODB_CONNECTION_STRING;
-const options = {};
+const uri = process.env.MONGODB_URI;
+const options = {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+};
 
 let client: MongoClient;
-let mongoClientPromise: Promise<MongoClient>;
 
-if (process.env.ENVIRONMENT === "development") {
-  // Reuse the existing client connection in development
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options);
-    global._mongoClientPromise = client.connect();
+if (process.env.NODE_ENV === "development") {
+  // In development mode, use a global variable so that the value
+  // is preserved across module reloads caused by HMR (Hot Module Replacement).
+  let globalWithMongo = global as typeof globalThis & {
+    _mongoClient?: MongoClient;
+  };
+
+  if (!globalWithMongo._mongoClient) {
+    globalWithMongo._mongoClient = new MongoClient(uri, options);
   }
-  mongoClientPromise = global._mongoClientPromise!;
+  client = globalWithMongo._mongoClient;
 } else {
-  // Always create a new client connection in production
+  // In production mode, it's best to not use a global variable.
   client = new MongoClient(uri, options);
-  mongoClientPromise = client.connect();
 }
 
-/**
- * Establish a connection to MongoDB and return the database instance.
- */
-export async function dbConnect(): Promise<Db> {
-  const connectedClient = await mongoClientPromise;
-  console.log("MongoDB Connected");
-  return connectedClient.db(); // Returns the default database
-}
+// Export a module-scoped MongoClient. By doing this in a
+// separate module, the client can be shared across functions.
 
+const mongoClientPromise = client;
 export default mongoClientPromise;

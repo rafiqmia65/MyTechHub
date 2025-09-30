@@ -1,7 +1,7 @@
-import FeaturedCategory from "@/components/home/FeaturedCategory";
-import Hero from "@/components/home/Hero";
-import TopCategories from "@/components/home/TopCategories";
-import WhyWeAreFavorite from "@/components/home/WhyWeAreFavorite";
+import FeaturedCategory from "@/components/public/home/FeaturedCategory";
+import Hero from "@/components/public/home/Hero";
+import TopCategories from "@/components/public/home/TopCategories";
+import WhyWeAreFavorite from "@/components/public/home/WhyWeAreFavorite";
 
 export default function Home() {
   return (
