@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -9,29 +10,35 @@ import Link from "next/link";
 import { toast } from "sonner";
 import GoogleSignUpButton from "../GoogleSignUpButton";
 
+type SignUpFormData = {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  password: string;
+  photo: FileList;
+};
+
 const SignUpForm = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpFormData>();
+
+  const onSubmit = async (data: SignUpFormData) => {
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const phone = formData.get("phone");
-    const address = formData.get("address");
-    const password = formData.get("password");
-    const photoFile = formData.get("photo") as File;
-
     try {
-      // 1 Upload photo to Cloudinary
+      // 1. Upload photo to Cloudinary
       let photoUrl = "";
-      if (photoFile) {
+      if (data.photo && data.photo.length > 0) {
         const cloudForm = new FormData();
-        cloudForm.append("file", photoFile);
+        cloudForm.append("file", data.photo[0]);
         cloudForm.append(
           "upload_preset",
           process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string
@@ -39,40 +46,31 @@ const SignUpForm = () => {
 
         const uploadRes = await fetch(
           `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
-          {
-            method: "POST",
-            body: cloudForm,
-          }
+          { method: "POST", body: cloudForm }
         );
 
         const uploadData = await uploadRes.json();
-        if (uploadData.secure_url) {
-          photoUrl = uploadData.secure_url;
-          console.log(photoUrl);
-        } else {
-          throw new Error("Image upload failed!");
-        }
+        if (uploadData.secure_url) photoUrl = uploadData.secure_url;
+        else throw new Error("Image upload failed!");
       }
 
-      console.log();
-
-      // 2 Register user with uploaded photo URL
+      // 2. Register user
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
-          email,
-          phone,
-          address,
-          password,
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          address: data.address,
+          password: data.password,
           photoUrl,
           role: "customer",
         }),
       });
 
       if (res.ok) {
-        toast.success("Your Account created successfully!");
+        toast.success("Your account created successfully!");
         router.push("/login");
       } else {
         const error = await res.json();
@@ -96,7 +94,7 @@ const SignUpForm = () => {
           Create your MyTechHub account in seconds
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Full Name */}
           <div>
             <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
@@ -104,12 +102,15 @@ const SignUpForm = () => {
             </label>
             <Input
               type="text"
-              name="name"
               placeholder="John Doe"
-              required
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
+              {...register("name", { required: "Full name is required" })}
+              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
             />
+            {errors.name && (
+              <span className="text-red-500 text-sm">
+                {errors.name.message}
+              </span>
+            )}
           </div>
 
           {/* Email */}
@@ -119,12 +120,15 @@ const SignUpForm = () => {
             </label>
             <Input
               type="email"
-              name="email"
               placeholder="you@example.com"
-              required
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
+              {...register("email", { required: "Email is required" })}
+              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
             />
+            {errors.email && (
+              <span className="text-red-500 text-sm">
+                {errors.email.message}
+              </span>
+            )}
           </div>
 
           {/* Phone */}
@@ -134,11 +138,15 @@ const SignUpForm = () => {
             </label>
             <Input
               type="text"
-              name="phone"
               placeholder="+8801XXXXXXXXX"
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
+              {...register("phone", { required: "Phone number is required" })}
+              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
             />
+            {errors.phone && (
+              <span className="text-red-500 text-sm">
+                {errors.phone.message}
+              </span>
+            )}
           </div>
 
           {/* Address */}
@@ -148,11 +156,15 @@ const SignUpForm = () => {
             </label>
             <Input
               type="text"
-              name="address"
               placeholder="123 Street, City, Country"
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
+              {...register("address", { required: "Address is required" })}
+              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
             />
+            {errors.address && (
+              <span className="text-red-500 text-sm">
+                {errors.address.message}
+              </span>
+            )}
           </div>
 
           {/* Photo Upload */}
@@ -162,12 +174,15 @@ const SignUpForm = () => {
             </label>
             <Input
               type="file"
-              name="photo"
               accept="image/*"
-              required
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500 cursor-pointer"
+              {...register("photo", { required: "Profile photo is required" })}
+              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500 cursor-pointer"
             />
+            {errors.photo && (
+              <span className="text-red-500 text-sm">
+                {errors.photo.message}
+              </span>
+            )}
           </div>
 
           {/* Password */}
@@ -177,11 +192,9 @@ const SignUpForm = () => {
             </label>
             <Input
               type={showPassword ? "text" : "password"}
-              name="password"
               placeholder="••••••••"
-              required
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500 pr-12"
+              {...register("password", { required: "Password is required" })}
+              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500 pr-12"
             />
             <button
               type="button"
@@ -190,6 +203,11 @@ const SignUpForm = () => {
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
+            {errors.password && (
+              <span className="text-red-500 text-sm">
+                {errors.password.message}
+              </span>
+            )}
           </div>
 
           {/* Submit */}
@@ -203,7 +221,7 @@ const SignUpForm = () => {
         </form>
 
         <div className="mt-6">
-          <GoogleSignUpButton></GoogleSignUpButton>
+          <GoogleSignUpButton />
         </div>
 
         <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-8">
