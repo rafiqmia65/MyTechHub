@@ -4,6 +4,7 @@ import { Card } from "../../ui/card";
 import { toast } from "sonner";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 const ContactForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -61,7 +62,7 @@ const ContactForm = () => {
           >
             Your Message
           </label>
-          <textarea
+          <Textarea
             id="message"
             name="message"
             rows={6}
