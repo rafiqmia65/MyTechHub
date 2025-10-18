@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface FeatureCardProps {
-  icon: JSX.Element;
+  icon: ReactNode;
   title: string;
   description: string;
 }

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Globe2, Truck, Headphones, ShieldCheck } from "lucide-react";
 import FeatureCard from "./FeatureCard";
 
 interface Feature {
   id: number;
-  icon: JSX.Element;
+  icon: ReactNode;
   title: string;
   description: string;
 }

@@ -9,9 +9,12 @@ export const GET = async () => {
       { status: "MyTechHub Server and DB are healthy" },
       { status: 200 }
     );
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const errorMessage =
+      err instanceof Error ? err.message : "Unknown error occurred";
+
     return NextResponse.json(
-      { status: "MyTechHub DB connection failed", error: err.message },
+      { status: "MyTechHub DB connection failed", error: errorMessage },
       { status: 500 }
     );
   }
