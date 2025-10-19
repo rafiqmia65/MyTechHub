@@ -3,7 +3,15 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Home, ShoppingBag, Layers, Info, Phone } from "lucide-react";
+import {
+  Menu,
+  Home,
+  ShoppingBag,
+  Layers,
+  Info,
+  Phone,
+  LayoutDashboard,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -20,13 +28,22 @@ const Navbar = () => {
   const pathname = usePathname();
   const { data: session } = useSession();
 
-  const navItems = [
+  // Base nav items
+  const baseNavItems = [
     { href: "/", label: "Home", icon: Home },
     { href: "/products", label: "Products", icon: ShoppingBag },
     { href: "/categories", label: "Categories", icon: Layers },
     { href: "/about", label: "About", icon: Info },
     { href: "/contact", label: "Contact", icon: Phone },
   ];
+
+  // Add dashboard link if user logged in
+  const navItems = session?.user
+    ? [
+        ...baseNavItems,
+        { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+      ]
+    : baseNavItems;
 
   const desktopLinks = navItems.map((item) => (
     <Link
@@ -72,8 +89,8 @@ const Navbar = () => {
               MyTechHub
             </Link>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-6 font-medium text-neutral-700 dark:text-neutral-200">
+            {/* Desktop Menu (visible only on lg and above) */}
+            <div className="hidden lg:flex items-center space-x-6 font-medium text-neutral-700 dark:text-neutral-200">
               {desktopLinks}
               <ModeToggle />
 
@@ -113,8 +130,8 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Mobile Menu */}
-            <div className="md:hidden">
+            {/* Mobile / Tablet Menu (below lg) */}
+            <div className="lg:hidden">
               <Sheet>
                 <SheetTrigger asChild>
                   <div className="flex items-center space-x-2">
