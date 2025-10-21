@@ -6,6 +6,8 @@ import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
 import { AppSidebar } from "../shared/app-sidebar";
+import DashboardMobileNavbar from "../shared/DashboardMobileNavbar/DashboardMobileNavbar";
+import { LayoutDashboard, Settings } from "lucide-react";
 
 interface AdminDashboardWrapperProps {
   children: React.ReactNode;
@@ -14,6 +16,11 @@ interface AdminDashboardWrapperProps {
 const AdminDashboardWrapper: React.FC<AdminDashboardWrapperProps> = ({
   children,
 }) => {
+  const dashboardItems = [
+    { title: "Overview", url: "/dashboard", icon: LayoutDashboard },
+    { title: "Settings", url: "/dashboard/settings", icon: Settings },
+  ];
+
   return (
     <ThemeProvider
       attribute="class"
@@ -25,9 +32,9 @@ const AdminDashboardWrapper: React.FC<AdminDashboardWrapperProps> = ({
         <Toaster position="top-right" expand={false} richColors />
 
         <SidebarProvider>
-          <AppSidebar></AppSidebar>
+          <AppSidebar dashboardItems={dashboardItems}></AppSidebar>
           <SidebarInset>
-            <SidebarTrigger></SidebarTrigger>
+            <DashboardMobileNavbar></DashboardMobileNavbar>
             {/* Main content */}
             <main> {children}</main>
           </SidebarInset>
