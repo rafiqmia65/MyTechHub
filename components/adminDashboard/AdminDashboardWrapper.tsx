@@ -5,7 +5,7 @@ import { ThemeProvider } from "../shared/ThemeProvider";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
-import { AppSidebar } from "../shared/app-sidebar";
+import { AppSidebar } from "../shared/DashboardSidebar/app-sidebar";
 import DashboardMobileNavbar from "../shared/DashboardMobileNavbar/DashboardMobileNavbar";
 import { LayoutDashboard, Settings } from "lucide-react";
 
