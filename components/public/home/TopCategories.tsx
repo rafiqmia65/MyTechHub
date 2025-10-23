@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter } from "@/components/ui/card";
+import Section from "@/components/shared/Section/Section";
 
 interface TopCategory {
   title: string;
@@ -34,13 +35,11 @@ const topCategories: TopCategory[] = [
 
 const TopCategories = () => {
   return (
-    <section className="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 text-center">
+    <Section>
+      <div className="text-center">
         {/* Header */}
-        <h2 className="text-4xl font-bold text-teal-500 mb-3">
-          Top Categories
-        </h2>
-        <p className="text-gray-500 dark:text-gray-400 mb-14 text-lg">
+        <h2 className="text-4xl font-bold text-primary mb-3">Top Categories</h2>
+        <p className="text-secondary mb-14 text-lg">
           Explore the most popular tech categories on MytechHub!
         </p>
 
@@ -49,13 +48,13 @@ const TopCategories = () => {
           {topCategories.map((category, idx) => (
             <Card
               key={idx}
-              className="relative group overflow-hidden rounded-2xl shadow-md hover:shadow-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 transition-all duration-500 transform hover:-translate-y-2 h-64 sm:h-72 lg:h-80"
+              className="relative group overflow-hidden h-64 sm:h-72 lg:h-80"
             >
               <Image
                 src={category.image}
                 alt={category.title}
                 fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
 
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-500"></div>
@@ -65,19 +64,14 @@ const TopCategories = () => {
                   {category.title}
                 </h3>
                 <Link href={category.link || "#"}>
-                  <Button
-                    size="sm"
-                    className="mt-2 px-5 py-2 bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white rounded-full transition-all shadow-md hover:shadow-lg cursor-pointer"
-                  >
-                    Explore
-                  </Button>
+                  <Button>Explore</Button>
                 </Link>
               </CardFooter>
             </Card>
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

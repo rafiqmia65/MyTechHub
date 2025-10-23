@@ -20,9 +20,13 @@ type SidebarItem = {
 
 interface AppSidebarContentProps {
   dashboardItems: SidebarItem[];
+  activePath?: string; // add this to detect active link
 }
 
-export function AppSidebarContent({ dashboardItems }: AppSidebarContentProps) {
+export function AppSidebarContent({
+  dashboardItems,
+  activePath = "",
+}: AppSidebarContentProps) {
   const appItems: SidebarItem[] = [
     { title: "Home", url: "/", icon: Home },
     { title: "Products", url: "/products", icon: Package },
@@ -31,25 +35,33 @@ export function AppSidebarContent({ dashboardItems }: AppSidebarContentProps) {
     { title: "Contact", url: "/contact", icon: Phone },
   ];
 
+  const renderMenuItems = (items: SidebarItem[]) =>
+    items.map((item) => (
+      <SidebarMenuItem key={item.title}>
+        <SidebarMenuButton asChild>
+          <Link
+            href={item.url}
+            className={`flex items-center gap-2 p-2 rounded-md transition-colors duration-200 text-primary hover:bg-transparent ${
+              activePath === item.url
+                ? "font-bold underline underline-offset-4"
+                : "font-normal hover:font-semibold hover:underline hover:underline-offset-4"
+            }`}
+          >
+            <item.icon className="h-4 w-4" />
+            <span>{item.title}</span>
+          </Link>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    ));
+
   return (
-    <SidebarContent className="flex flex-col justify-between">
+    <SidebarContent className="flex flex-col justify-between bg-accent">
       {/* Dashboard Section */}
       <div>
         <SidebarGroup>
           <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {dashboardItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon className="mr-2 h-4 w-4" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+            <SidebarMenu>{renderMenuItems(dashboardItems)}</SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </div>
@@ -59,18 +71,7 @@ export function AppSidebarContent({ dashboardItems }: AppSidebarContentProps) {
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              {appItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon className="mr-2 h-4 w-4" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
+            <SidebarMenu>{renderMenuItems(appItems)}</SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </div>

@@ -16,21 +16,17 @@ import { ModeToggle } from "../../ModeToggle";
 import LogOutButton from "@/components/auth/LogOutButton";
 import { useSession } from "next-auth/react";
 
-export function AppSidebarFooter() {
+export function AppSidebarFooter({ activePath = "" }) {
   const { state } = useSidebar();
   const { data: session } = useSession();
-
   const user = session?.user;
 
-  console.log(user)
-
   return (
-    <SidebarFooter className="border-t">
+    <SidebarFooter className="border-t bg-accent">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <button className="flex items-center justify-between w-full p-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors duration-200 cursor-pointer">
+          <button className="flex items-center justify-between w-full p-2 rounded-md hover:bg-primary/10 text-primary transition-colors duration-200 cursor-pointer">
             <div className="flex items-center gap-2 overflow-hidden">
-              {/* Show avatar when expanded, user icon when collapsed */}
               {state === "expanded" ? (
                 <Avatar className="h-8 w-8">
                   <AvatarImage
@@ -45,13 +41,12 @@ export function AppSidebarFooter() {
                 <User className="h-5 w-5" />
               )}
 
-              {/* Show user details only when expanded */}
               {state === "expanded" && (
                 <div className="flex flex-col text-left leading-tight">
                   <span className="text-sm font-medium truncate">
                     {user?.name || "User Name"}
                   </span>
-                  <span className="text-xs text-muted-foreground truncate">
+                  <span className="text-xs truncate">
                     {user?.email || "user@example.com"}
                   </span>
                 </div>
@@ -61,7 +56,11 @@ export function AppSidebarFooter() {
           </button>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent side="right" align="end" className="w-56">
+        <DropdownMenuContent
+          side="right"
+          align="end"
+          className="w-56 bg-accent text-primary"
+        >
           <DropdownMenuLabel>
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
@@ -78,7 +77,7 @@ export function AppSidebarFooter() {
                   <span className="text-sm font-medium">
                     {user?.name || "User Name"}
                   </span>
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-xs">
                     {user?.email || "user@example.com"}
                   </span>
                 </div>
@@ -88,13 +87,23 @@ export function AppSidebarFooter() {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href="/dashboard/account" className="cursor-pointer">
+            <Link
+              href="/account"
+              className={`flex items-center gap-2 cursor-pointer text-primary transition-colors duration-200 ${
+                activePath === "/dashboard/account"
+                  ? "font-bold underline underline-offset-4"
+                  : "hover:font-semibold hover:underline hover:underline-offset-4"
+              }`}
+            >
+              <User className="h-4 w-4" stroke="currentColor" />{" "}
+              {/* Icon uses current text color */}
               Account
             </Link>
           </DropdownMenuItem>
+
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-red-500 focus:text-red-500">
-            <LogOutButton />
+          <DropdownMenuItem>
+            <LogOutButton className="w-full" />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

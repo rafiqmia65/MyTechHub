@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
-import Navbar from "@/components/shared/Navbar";
+import Navbar from "@/components/shared/Navbar/Navbar";
 import Footer from "@/components/shared/Footer";
 
 export default function ClientProviders({ children }: { children: ReactNode }) {

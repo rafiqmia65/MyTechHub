@@ -1,10 +1,11 @@
+import CustomButton from "@/components/shared/CustomButton/CustomButton";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="bg-white dark:bg-slate-900 min-h-[60vh] pt-18 pb-10">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="bg-background min-h-[60vh] pt-18 pb-10">
+      <div className="container mx-auto px-4 lg:px-0">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
           {/* Right Image - Mobile version image in the top */}
           <div className="relative w-full min-h-72 md:h-[300px] order-1 md:order-2">
@@ -19,30 +20,19 @@ const Hero = () => {
 
           {/* Left Content */}
           <div className="space-y-6 text-center md:text-left order-2 md:order-1">
-            <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight text-neutral-900 dark:text-white">
+            <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight text-primary">
               Upgrade Your World with{" "}
-              <span className="text-teal-500">MyTechHub</span>
+              <span className="text-secondary">MyTechHub</span>
             </h1>
-            <p className="text-lg text-neutral-700 dark:text-neutral-300 max-w-lg mx-auto md:mx-0">
+            <p className="text-lg text-secondary max-w-lg mx-auto md:mx-0">
               Discover the latest gadgets and electronics — mobiles, monitors,
               watches, and accessories. Quality products, affordable prices, and
               fast delivery.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button
-                size="lg"
-                className="bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-xl shadow-lg transition-transform hover:scale-105 cursor-pointer"
-              >
-                Shop Now
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-teal-500 text-teal-600 dark:text-teal-400 hover:bg-teal-50 dark:hover:bg-gray-900 rounded-xl shadow-md transition-transform hover:scale-105 cursor-pointer"
-              >
-                Explore Products
-              </Button>
+              <Button>Shop Now</Button>
+              <CustomButton>Explore Products</CustomButton>
             </div>
           </div>
         </div>
