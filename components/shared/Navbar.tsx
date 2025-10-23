@@ -51,8 +51,8 @@ const Navbar = () => {
       href={item.href}
       className={`transition-colors cursor-pointer ${
         pathname === item.href
-          ? "text-teal-600 font-semibold"
-          : "hover:text-teal-500"
+          ? "text-primary font-semibold"
+          : "text-secondary hover:text-primary"
       }`}
     >
       {item.label}
@@ -67,8 +67,8 @@ const Navbar = () => {
         href={item.href}
         className={`flex items-center gap-2 transition-colors cursor-pointer ${
           pathname === item.href
-            ? "text-teal-600 font-semibold"
-            : "hover:text-teal-500"
+            ? "text-primary font-semibold"
+            : "text-secondary hover:text-primary"
         }`}
       >
         <Icon className="h-4 w-4" /> {item.label}
@@ -77,20 +77,20 @@ const Navbar = () => {
   });
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-slate-800 border-b-2 border-teal-500 dark:border-teal-700 backdrop-blur-md shadow-sm">
+    <header className="sticky top-0 z-50 bg-background border-b">
       <nav>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             {/* Brand */}
             <Link
               href="/"
-              className="text-2xl font-bold text-teal-500 hover:text-teal-600 transition-colors cursor-pointer"
+              className="text-2xl font-bold text-primary hover:opacity-80 transition-colors cursor-pointer"
             >
               MyTechHub
             </Link>
 
-            {/* Desktop Menu (visible only on lg and above) */}
-            <div className="hidden lg:flex items-center space-x-6 font-medium text-neutral-700 dark:text-neutral-200">
+            {/* Desktop Menu */}
+            <div className="hidden lg:flex items-center space-x-6 font-medium">
               {desktopLinks}
               <ModeToggle />
 
@@ -115,13 +115,13 @@ const Navbar = () => {
                     <Link href="/login">
                       <Button
                         variant="outline"
-                        className="border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors dark:bg-slate-800 cursor-pointer"
+                        className="border-primary text-primary hover:bg-primary hover:text-white transition-colors cursor-pointer"
                       >
                         Login
                       </Button>
                     </Link>
                     <Link href="/signUp">
-                      <Button className="bg-teal-600 text-white hover:bg-teal-800 transition-colors cursor-pointer">
+                      <Button className="bg-primary text-secondary hover:opacity-90 transition-colors cursor-pointer">
                         Sign Up
                       </Button>
                     </Link>
@@ -130,7 +130,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Mobile / Tablet Menu (below lg) */}
+            {/* Mobile / Tablet Menu */}
             <div className="lg:hidden">
               <Sheet>
                 <SheetTrigger asChild>
@@ -139,7 +139,7 @@ const Navbar = () => {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="text-black dark:text-white cursor-pointer"
+                      className="text-secondary"
                     >
                       <Menu className="h-6 w-6" />
                     </Button>
@@ -148,13 +148,13 @@ const Navbar = () => {
 
                 <SheetContent
                   side="left"
-                  className="bg-white dark:bg-slate-900 text-black dark:text-white"
+                  className="bg-background text-secondary"
                 >
                   {/* Mobile Header */}
                   <div className="flex justify-between items-center mb-6 ml-4">
                     <Link
                       href="/"
-                      className="text-2xl font-bold text-teal-500 hover:text-teal-600 transition-colors cursor-pointer"
+                      className="text-2xl font-bold text-primary hover:opacity-80 transition-colors cursor-pointer"
                     >
                       MyTechHub
                     </Link>
@@ -175,13 +175,13 @@ const Navbar = () => {
                         <Link href="/login">
                           <Button
                             variant="outline"
-                            className="w-full border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors"
+                            className="w-full border-primary text-primary hover:bg-primary hover:text-white transition-colors"
                           >
                             Login
                           </Button>
                         </Link>
                         <Link href="/signup">
-                          <Button className="w-full bg-teal-600 text-white hover:bg-teal-700 transition-colors">
+                          <Button className="w-full bg-primary text-background hover:opacity-90 transition-colors">
                             Sign Up
                           </Button>
                         </Link>
