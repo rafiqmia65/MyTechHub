@@ -1,12 +1,13 @@
+import Section from "@/components/shared/Section/Section";
 import React from "react";
 
 const AboutHeader: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto px-6 text-center mb-16">
-      <h1 className="text-4xl md:text-5xl font-bold text-teal-700 dark:text-white mb-6">
+    <Section>
+      <h1 className="text-4xl text-center md:text-5xl font-bold text-primary mb-6">
         About MytechHub
       </h1>
-      <p className="text-gray-500 dark:text-gray-400 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+      <p className="text-secondary max-w-4xl text-center mx-auto text-lg md:text-xl leading-relaxed">
         At MytechHub, we don’t just sell gadgets — we connect the world with
         cutting-edge technology, exceptional service, and a commitment to
         innovation. Our mission is to make the latest technology accessible to
@@ -14,7 +15,7 @@ const AboutHeader: React.FC = () => {
         experience. Every product we offer reflects our dedication to quality,
         reliability, and customer satisfaction.
       </p>
-    </div>
+    </Section>
   );
 };
 

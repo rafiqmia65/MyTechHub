@@ -56,7 +56,7 @@ const WhyWeAreFavorite = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map(({ icon: Icon, title, description }, idx) => (
-            <Card key={idx} className="group p-5">
+            <Card key={idx} className="group">
               <div className="w-16 h-16 flex items-center justify-center bg-primary/10 text-primary rounded-full mx-auto group-hover:scale-110 transition-transform duration-300">
                 <Icon size={32} />
               </div>

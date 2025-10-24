@@ -1,3 +1,5 @@
+import Section from "@/components/shared/Section/Section";
+import { Card } from "@/components/ui/card";
 import React from "react";
 
 const AboutMissionVision = () => {
@@ -15,21 +17,16 @@ const AboutMissionVision = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 mb-16">
+    <Section className="grid md:grid-cols-2 gap-10">
       {cards.map((card) => (
-        <div
-          key={card.title}
-          className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 border border-slate-200 dark:border-slate-700"
-        >
-          <h2 className="text-3xl font-bold text-teal-500 dark:text-white mb-4">
-            {card.title}
-          </h2>
-          <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+        <Card key={card.title}>
+          <h2 className="text-3xl font-bold text-primary mb-4">{card.title}</h2>
+          <p className="text-secondary text-lg leading-relaxed">
             {card.content}
           </p>
-        </div>
+        </Card>
       ))}
-    </div>
+    </Section>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import React, { ReactNode } from "react";
 
 interface FeatureCardProps {
@@ -12,17 +13,17 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   description,
 }) => {
   return (
-    <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 text-center border border-slate-200 dark:border-slate-700">
-      <div className="mx-auto w-16 h-16 flex items-center justify-center bg-teal-100 dark:bg-teal-500/20 rounded-full mb-5">
+    <Card>
+      <div className="mx-auto w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full">
         {icon}
       </div>
-      <h3 className="font-semibold text-xl text-slate-800 dark:text-white mb-3">
+      <h3 className="font-semibold text-xl text-primary text-center">
         {title}
       </h3>
-      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+      <p className="text-secondary text-center text-sm leading-relaxed">
         {description}
       </p>
-    </div>
+    </Card>
   );
 };
 
