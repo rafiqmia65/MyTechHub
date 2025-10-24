@@ -5,15 +5,31 @@ import Link from "next/link";
 import { ModeToggle } from "../../ModeToggle";
 import AuthButtons from "../AuthButtons/AuthButtons";
 
+// Navigation link interface
 interface NavItem {
   href: string;
   label: string;
 }
 
+// Session interface based on your [Session Info]
+interface SessionUser {
+  name: string;
+  email: string;
+  id: string;
+  role: "admin" | "customer";
+  image?: string;
+  photoUrl?: string;
+}
+
+interface SessionInfo {
+  user: SessionUser;
+  expires: string;
+}
+
 interface DesktopNavProps {
   navItems: NavItem[];
   activePath: string;
-  session: any;
+  session: SessionInfo | null;
 }
 
 const DesktopNav: React.FC<DesktopNavProps> = ({

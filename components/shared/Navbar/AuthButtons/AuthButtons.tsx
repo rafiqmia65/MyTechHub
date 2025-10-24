@@ -7,8 +7,23 @@ import Image from "next/image";
 import LogOutButton from "@/components/auth/LogOutButton";
 import CustomButton from "../../CustomButton/CustomButton";
 
+// Define session types
+interface SessionUser {
+  name: string;
+  email: string;
+  id: string;
+  role: "admin" | "customer";
+  image?: string;
+  photoUrl?: string;
+}
+
+interface SessionInfo {
+  user: SessionUser;
+  expires: string;
+}
+
 interface AuthButtonsProps {
-  session: any;
+  session: SessionInfo | null;
   fullWidth?: boolean;
 }
 
@@ -16,6 +31,11 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
   session,
   fullWidth = false,
 }) => {
+  const photo =
+    session?.user?.photoUrl ||
+    session?.user?.image ||
+    "https://i.ibb.co.com/bjKVM3RJ/avatar.jpg";
+
   if (session?.user) {
     return (
       <div
@@ -24,9 +44,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
         }`}
       >
         <Image
-          src={
-            session.user.photoUrl || "https://i.ibb.co.com/bjKVM3RJ/avatar.jpg"
-          }
+          src={photo}
           alt="User Photo"
           width={32}
           height={32}
@@ -40,12 +58,10 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
   return (
     <div className={fullWidth ? "flex flex-col gap-3 w-full" : "flex gap-2"}>
       <Link href="/login" className={fullWidth ? "w-full" : ""}>
-        <CustomButton className={`${fullWidth ? "w-full" : ""}`}>
-          Login
-        </CustomButton>
+        <CustomButton className={fullWidth ? "w-full" : ""}>Login</CustomButton>
       </Link>
       <Link href="/signup" className={fullWidth ? "w-full" : ""}>
-        <Button className={`${fullWidth ? "w-full" : ""} `}>Sign Up</Button>
+        <Button className={fullWidth ? "w-full" : ""}>Sign Up</Button>
       </Link>
     </div>
   );

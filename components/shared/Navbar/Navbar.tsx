@@ -19,6 +19,8 @@ const Navbar = () => {
   const pathname = usePathname();
   const { data: session } = useSession();
 
+  console.log(session);
+
   const baseNavItems = [
     { href: "/", label: "Home", icon: Home },
     { href: "/products", label: "Products", icon: ShoppingBag },

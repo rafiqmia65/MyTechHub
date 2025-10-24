@@ -12,16 +12,32 @@ import { Menu, X } from "lucide-react";
 import { ModeToggle } from "../../ModeToggle";
 import AuthButtons from "../AuthButtons/AuthButtons";
 
+// Define nav item type
 interface NavItem {
   href: string;
   label: string;
-  icon?: React.ComponentType<any>;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+
+// Define session types
+interface SessionUser {
+  name: string;
+  email: string;
+  id: string;
+  role: "admin" | "customer";
+  image?: string;
+  photoUrl?: string;
+}
+
+interface SessionInfo {
+  user: SessionUser;
+  expires: string;
 }
 
 interface MobileNavProps {
   navItems: NavItem[];
   activePath: string;
-  session: any;
+  session: SessionInfo | null;
 }
 
 const MobileNav: React.FC<MobileNavProps> = ({
@@ -50,7 +66,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
           side="left"
           className="bg-background text-primary p-0 w-full max-w-xs [&>button]:hidden"
         >
-          {/* Header with padding-top */}
+          {/* Header */}
           <div className="flex justify-between items-center mb-6 w-full px-4 pt-4">
             <Link
               href="/"
@@ -59,7 +75,6 @@ const MobileNav: React.FC<MobileNavProps> = ({
               MyTechHub
             </Link>
 
-            {/* Only Custom Close Icon */}
             <SheetClose asChild>
               <button
                 className="text-primary hover:text-primary/90 transition-colors duration-200 cursor-pointer"
