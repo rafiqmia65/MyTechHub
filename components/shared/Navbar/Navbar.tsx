@@ -11,9 +11,9 @@ import {
   Phone,
   LayoutDashboard,
 } from "lucide-react";
-import Link from "next/link";
 import DesktopNav from "./DesktopNav/DesktopNav";
 import MobileNav from "./MobileNav/MobileNav";
+import BrandLogo from "../BrandLogo/BrandLogo";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -37,13 +37,7 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-accent border-b">
       <nav className="container mx-auto px-4 lg:px-0 flex justify-between items-center h-16">
-        {/* Brand */}
-        <Link
-          href="/"
-          className="text-2xl font-bold text-primary cursor-pointer"
-        >
-          MyTechHub
-        </Link>
+        <BrandLogo></BrandLogo>
 
         {/* Desktop Nav */}
         <DesktopNav
