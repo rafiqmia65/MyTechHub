@@ -25,16 +25,16 @@ const ContactCard = ({
   linkText,
 }: ContactCardProps) => {
   return (
-    <Card className="bg-white dark:bg-slate-800 rounded-2xl text-center shadow-lg transform hover:scale-[1.02] transition-transform duration-300 border-slate-200 border dark:border-slate-700">
+    <Card className="">
       {/* Header */}
       <CardHeader className="flex flex-col items-center">
-        <div className="w-16 h-16 flex items-center justify-center bg-teal-100 dark:bg-teal-900/40 rounded-full mb-4">
+        <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-4">
           {icon}
         </div>
-        <CardTitle className="text-xl font-semibold text-slate-800 dark:text-white">
+        <CardTitle className="text-xl font-semibold text-primary">
           {title}
         </CardTitle>
-        <CardDescription className="text-gray-600 dark:text-gray-400">
+        <CardDescription className="text-secondary">
           {description}
         </CardDescription>
       </CardHeader>
@@ -46,7 +46,7 @@ const ContactCard = ({
       <CardFooter className="flex justify-center">
         <a
           href={link}
-          className="inline-flex items-center text-teal-600 dark:text-teal-400 font-medium hover:underline group"
+          className="inline-flex items-center text-primary font-medium hover:underline group"
         >
           {linkText}
           <ArrowUpRight

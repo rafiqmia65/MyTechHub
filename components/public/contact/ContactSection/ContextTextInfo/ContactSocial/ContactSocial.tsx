@@ -14,7 +14,7 @@ const ContactSocial = () => {
         <a
           key={i}
           href={item.href}
-          className="text-cyan-500 dark:text-cyan-400 hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors"
+          className="w-6 h-6 text-primary hover:text-primary/80 transition-colors cursor-pointer"
         >
           {item.icon}
         </a>
