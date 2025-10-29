@@ -13,8 +13,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   description,
 }) => {
   return (
-    <Card>
-      <div className="mx-auto w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full">
+    <Card className="group cursor-pointer">
+      <div className="mx-auto w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full group-hover:scale-110 transition-transform duration-300">
         {icon}
       </div>
       <h3 className="font-semibold text-xl text-primary text-center">

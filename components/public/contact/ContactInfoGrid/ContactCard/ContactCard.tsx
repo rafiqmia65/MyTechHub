@@ -25,10 +25,10 @@ const ContactCard = ({
   linkText,
 }: ContactCardProps) => {
   return (
-    <Card className="">
+    <Card className="group cursor-pointer">
       {/* Header */}
       <CardHeader className="flex flex-col items-center">
-        <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-4">
+        <div className="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
           {icon}
         </div>
         <CardTitle className="text-xl font-semibold text-primary">
