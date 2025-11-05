@@ -16,7 +16,7 @@ const GoogleSignUpButton = () => {
   return (
     <Button
       onClick={handleGoogleSignUp}
-      className="w-full flex items-center justify-center gap-2 bg-white text-gray-700 border border-gray-300 hover:bg-teal-50 dark:bg-slate-800 dark:text-gray-200 dark:border-gray-600 shadow-sm transition cursor-pointer"
+      className="w-full border border-primary text-primary bg-transparent hover:bg-primary hover:text-white transition-colors cursor-pointer"
     >
       <Globe className="h-5 w-5 text-[#4285F4]" /> {/* Google Blue */}
       Continue with <span className="font-semibold text-[#DB4437]">G</span>

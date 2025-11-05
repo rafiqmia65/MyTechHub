@@ -9,6 +9,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { signIn } from "next-auth/react";
 import GoogleSignUpButton from "../GoogleSignUpButton";
+import { Card } from "@/components/ui/card";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -48,18 +49,18 @@ const LoginForm = () => {
 
   return (
     <section className="flex items-center justify-center">
-      <div className="w-full max-w-lg bg-white dark:bg-slate-800 shadow-2xl rounded-2xl p-10 border border-slate-200 dark:border-slate-700">
-        <h1 className="text-4xl font-extrabold text-center mb-2 bg-gradient-to-r from-teal-500 to-teal-700 bg-clip-text text-transparent">
+      <Card className="w-full max-w-lg shadow-xl">
+        <h1 className="text-4xl font-extrabold text-center bg-primary bg-clip-text text-transparent">
           Log In
         </h1>
-        <p className="text-center text-slate-500 dark:text-slate-400 mb-8">
+        <p className="text-center text-secondary mb-4">
           Welcome back! Sign in to continue exploring tech.
         </p>
 
         <form onSubmit={handleLogin} className="space-y-5">
           {/* Email */}
           <div>
-            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+            <label className="block text-sm font-semibold text-primary mb-2">
               Email Address
             </label>
             <Input
@@ -67,14 +68,12 @@ const LoginForm = () => {
               name="email"
               placeholder="you@example.com"
               required
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500"
             />
           </div>
 
           {/* Password */}
           <div className="relative">
-            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+            <label className="block text-sm font-semibold text-primary mb-2">
               Password
             </label>
             <Input
@@ -82,24 +81,18 @@ const LoginForm = () => {
               name="password"
               placeholder="••••••••"
               required
-              className="w-full rounded-xl border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white 
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:border-teal-500 pr-12"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-10 text-slate-500 dark:text-slate-400"
+              className="absolute right-4 top-10 text-primary"
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
 
           {/* Submit */}
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-semibold py-3 rounded-xl shadow-md transition disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
-          >
+          <Button type="submit" disabled={loading} className="w-full">
             {loading ? "Signing you in..." : "Log In"}
           </Button>
         </form>
@@ -108,16 +101,16 @@ const LoginForm = () => {
           <GoogleSignUpButton />
         </div>
 
-        <p className="text-center text-sm text-slate-600 dark:text-slate-400 mt-8">
+        <p className="text-center text-sm text-secondary mt-8">
           Don’t have an account?{" "}
           <Link
             href="/signUp"
-            className="text-teal-600 hover:underline font-semibold"
+            className="text-primary hover:underline font-semibold"
           >
             Sign Up
           </Link>
         </p>
-      </div>
+      </Card>
     </section>
   );
 };
