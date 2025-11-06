@@ -60,7 +60,7 @@ const AuthButtons: React.FC<AuthButtonsProps> = ({
       <Link href="/login" className={fullWidth ? "w-full" : ""}>
         <CustomButton className={fullWidth ? "w-full" : ""}>Login</CustomButton>
       </Link>
-      <Link href="/signup" className={fullWidth ? "w-full" : ""}>
+      <Link href="/signUp" className={fullWidth ? "w-full" : ""}>
         <Button className={fullWidth ? "w-full" : ""}>Sign Up</Button>
       </Link>
     </div>

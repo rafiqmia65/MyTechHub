@@ -5,8 +5,8 @@ import Section from "@/components/shared/Section/Section";
 
 const Login = () => {
   return (
-    <div className="py-12 bg-background transition-colors">
-      <Section className="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
+    <div className="bg-background transition-colors">
+      <Section className="grid grid-cols-1 md:grid-cols-2 items-start gap-12">
         {/* Left Side - Login Form */}
         <LoginForm />
 
